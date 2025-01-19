@@ -26,9 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>        
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased w-dvw h-dvh flex flex-col items-center`}>        
       {/* Navigation Bar */}
-      <nav className="bg-blue-600 text-white p-4 shadow-md">
+      <nav className="w-full bg-blue-600 text-white p-4 shadow-md">
         <div className="container mx-auto flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="text-xl font-bold"> Home </Link>
@@ -39,8 +39,8 @@ export default function RootLayout({
               Home
             </Link>
             
-            <Link href="/about" className="hover:underline hover:text-blue-300 transition-colors">
-              About
+            <Link href="/calendar" className="hover:underline hover:text-blue-300 transition-colors">
+              Calendar
             </Link>
             
             <Link href="/contact" className="hover:underline hover:text-blue-300 transition-colors">
