@@ -12,9 +12,9 @@ export default function Home() {
 
       {/* Page 2 - Fixed Layout */}
       <div className="relative w-full h-screen bg-gray-600 flex justify-center items-center">
-        <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-lg">
+        {/* <div className="w-full max-w-lg p-4 bg-white rounded-lg shadow-lg">
           <Calculator />
-        </div>
+        </div> */}
       </div>
     </div>
   );
