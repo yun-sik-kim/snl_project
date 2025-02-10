@@ -1,15 +1,15 @@
-function VCalendarInterpreter({ICSFile}) {
-    VTimeZoneInterpreter
+// function VCalendarInterpreter({ICSFile}) {
+//     VTimeZoneInterpreter
 
-}
-
-
-function VTimeZoneInterpreter() {
-
-}
+// }
 
 
-function VEventInterpreter() {
+// function VTimeZoneInterpreter() {
 
-}
+// }
+
+
+// function VEventInterpreter() {
+
+// }
 

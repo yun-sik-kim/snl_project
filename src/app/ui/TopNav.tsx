@@ -9,9 +9,8 @@ export default function TopNav() {
 
                 {/* Top Navi Links */}
                 <div className="space-x-4">
-                    <Link href="/" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Home</Link>
-                    <Link href="/about" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">About</Link>
-                    <Link href="/contact" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Contact</Link>
+                    <Link href="/" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Log In</Link>
+                    <Link href="/" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Sign Up</Link>
                 </div>
        </nav>
     );

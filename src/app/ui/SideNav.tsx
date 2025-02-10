@@ -11,7 +11,7 @@ export default function SideNav() {
               <Link href="/about" className="block px-3 py-2 hover:bg-white rounded">
                 <Image src="/chess_pawn.svg" width={24} height={24} alt="Logo" className="inline w-6 h-6" /> About
               </Link>
-              <Link href="/contact" className="block px-3 py-2 hover:bg-white rounded">Contact</Link>
+              <Link href="/calendar" className="block px-3 py-2 hover:bg-white rounded">Calendar</Link>
               <Link href="/setting" className="block px-3 py-2 hover:bg-white rounded">Settings</Link>
             </nav>
 

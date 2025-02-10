@@ -1,5 +1,5 @@
 // VCALENDAR
-export type ICSEvent = { 
+export type ICSCalendar = { 
   PRODID: string;
   VERSION: string;
   CALSCALE: string;
