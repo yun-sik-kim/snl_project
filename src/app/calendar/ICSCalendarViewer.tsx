@@ -95,19 +95,19 @@ export default function ICSCalendarViewer() {
       <h2 className="text-2xl font-semibold space-x-4 pb-2">Calendar Events</h2>
       <div>
         <div
-          className={`border-2 border-dashed rounded-lg p-8 text-center mb-4 transition-colors
-              ${isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"}
-              ${calendar.length === 0 ? "h-40" : ""}`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
         >
           {calendar.length === 0 ? (
-            <div className="text-gray-500">
+            <div className={`border-2 border-dashed rounded-lg p-8 text-center mb-4 transition-colors
+              ${isDragging ? "border-blue-500 bg-blue-50" : "border-gray-300"}
+              ${calendar.length === 0 ? "h-40" : ""}`}>
               <p className="text-lg mb-2">Drag and drop your ICS file here!</p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div>
+              <div className="bg-cyan-900">EventAdder</div>
               {/* {calendar.map((event, index) => (
                 <div
                   key={index}
@@ -140,4 +140,10 @@ export default function ICSCalendarViewer() {
       </div>
     </div>
   );
+}
+
+
+function parseDescription(text: string): string {  
+  // Replace '_' with space and remove '\'
+  return text.replace(/_/g, ' ').replace(/\\/g, '');
 }
