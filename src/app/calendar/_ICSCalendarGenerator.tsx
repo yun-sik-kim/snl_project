@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ICSEvent, RecurringType } from "./types/ics";
+import type { ICSEvent, RecurringType } from "./types/ics.types";
 
 const ICSCalendarGenerator: React.FC = () => {
   const [formData, setFormData] = useState<ICSEvent>({

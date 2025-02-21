@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
 import ICSCalendarViewer from "./ICSCalendarViewer";
-import ICSGenerator from "./ICSCalendarGenerator";
-import ICSCalendarGenerator from "./ICSCalendarGenerator";
+import ICSGenerator from "./_ICSCalendarGenerator";
+import ICSCalendarGenerator from "./_ICSCalendarGenerator";
 
 export default function CalendarPage() {
   return (
