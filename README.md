@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **SNL Vision:**
 
-## Getting Started
+## “ You are not alone! We study together as a Study Group!” - Liverpool
 
-First, run the development server:
+- **📚 STUDY PLACE :** A **dedicated time & space every Saturday** for students to invest in their dreams despite their busy schedules.
+- **🌐 WEB COMMUNITY :** An online **community for sharing information and supporting like-minded individuals** with similar aspirations.
+- **🛝 PLAYGROUND :** A space to **support & develop the dreams** of university students living in Melbourne.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### **Our Target Audience**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+📌 Any university students, postgraduates, and graduates in Melbourne who wish to study together with respect and discussion 🙂
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Operations**
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📍 Every Saturday, 10:30 AM – open-ended (Flexible self-organized sessions).
 
-## Learn More
+📍 University study spaces secured & provided.
 
-To learn more about Next.js, take a look at the following resources:
+📍 Study resources & materials available.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📍 Snacks provided.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Membership Benefits**
 
-## Deploy on Vercel
+✅ Access to **study spaces**.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+✅ Resources & information for a **successful university life** via the **web platform**.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ Opportunities to **team-up & join projects**.
+
+✅ **Networking** for career development in different fields.
+
+
+
