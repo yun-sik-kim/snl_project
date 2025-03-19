@@ -1,17 +1,28 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function TopNav() {
+    return (
+        <nav className="fixed w-full h-16 flex justify-between items-center bg-transparent text-black px-6 py-2 z-50">
+            
+            {/* Logo on the left */}
+            <Link href="/" className="flex items-center ml-2">
+                <Image 
+                    src="/logo.svg" 
+                    alt="Logo" 
+                    width={64} 
+                    height={64} 
+                    className="p-1"
+                />
+            </Link>
 
-    return(
-        <nav className="fixed w-full h-12 justify-between items-center bg-BRAND_COLOR2 right-0 left-0 text-white flex p-4 z-50">
-                {/* Top Navi Logo */}
-                <Link href="/" className="text-xl font-bold">Home</Link>
-
-                {/* Top Navi Links */}
-                <div className="space-x-4">
-                    <Link href="/" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Log In</Link>
-                    <Link href="/" className="hover:underline hover:text-BRAND_COLOR1 transition-colors">Sign Up</Link>
-                </div>
-       </nav>
+            {/* Log In Button Styled Like the Image */}
+            <Link 
+                href="/login" 
+                className="px-4 py-2 bg-black text-white rounded-lg font-semibold hover:opacity-80 transition-opacity"
+            >
+                Log In
+            </Link>
+        </nav>
     );
 }

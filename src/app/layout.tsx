@@ -1,20 +1,22 @@
 /* 0. Imports */
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk, Rock_Salt } from "next/font/google"; // Import Rock Salt
 import "./globals.css";
 
 import TopNav from "./ui/TopNav";
 import SideNav from "./ui/SideNav";
 
 /* 1. Font Configuration */
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const spaceGrotesk = Space_Grotesk({
+  weight: ['300', '700'],
+  style: ['normal'],
+  subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const rockSalt = Rock_Salt({
+  weight: '400', // Rock Salt only has 400 weight
+  style: 'normal',
+  subsets: ['latin'],
 });
 
 /* 2. Metadata */
@@ -33,11 +35,11 @@ export default function RootLayout({
     <html lang="en">
       {/* Body Class */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} w-dvw h-dvh overflow-x-hidden`}
+        className={`${spaceGrotesk.className} w-dvw h-dvh overflow-x-hidden`}
       >
         <header>
           <TopNav />
-          <SideNav />
+          {/* <SideNav /> */}
         </header>
         {/* Main Content */}
         <main className="w-full h-full">{children}</main>
