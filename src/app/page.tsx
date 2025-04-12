@@ -1,18 +1,40 @@
 "use client"
 
 import Image from "next/image";
-import Calculator from "./components/Calculator";
 import Link from 'next/link';
-import TestimonialCarousel from "./components/TestimonialCarousel";
+
+import TestimonialCarousel from "@components/TestimonialCarousel";
+import InfiniteCardSlider from "@components/InfiniteCardSlider";
 
 import { Rock_Salt } from "next/font/google";
-import { Fullscreen } from "lucide-react";
+// import { Fullscreen } from "lucide-react";
 
 const rockSalt = Rock_Salt({
   weight: "400", // Rock Salt only has 400 weight
   style: "normal",
   subsets: ["latin"],
 });
+
+// const cards = [
+//   {
+//     id: 1,
+//     title: 'Card 1',
+//     description: 'This is the first card description.',
+//     image: '/images/card1.jpg',
+//   },
+//   {
+//     id: 2,
+//     title: 'Card 2',
+//     description: 'This is the second card description.',
+//     image: '/images/card2.jpg',
+//   },
+//   {
+//     id: 3,
+//     title: 'Card 3',
+//     description: 'This is the third card description.',
+//     image: '/images/card3.jpg',
+//   },
+// ];
 
 
 export default function Home() {
@@ -162,7 +184,12 @@ export default function Home() {
             </div>
             
             <div className="card white-card flex justify-center">
-              <div className="text-center">STUDY ROOM IMAGE</div>
+              <Image 
+                src="/images/snl_meeting1.png" 
+                width={800} 
+                height={600}  
+                alt="snl meeting image" 
+              />
             </div>
             
             <div className="card black-card">
@@ -179,7 +206,12 @@ export default function Home() {
             </div>
             
             <div className="card white-card flex justify-center">
-              <div className="text-center">STUDY ROOM IMAGE</div>
+            <Image 
+                src="/images/snl_meeting2.png" 
+                width={800} 
+                height={600}  
+                alt="snl meeting image" 
+              />
             </div>
             
             <div className="card black-card">
@@ -199,7 +231,12 @@ export default function Home() {
             </div>
             
             <div className="card white-card flex justify-center">
-              <div className="text-center">STUDY ROOM IMAGE</div>
+              <Image 
+                src="/images/snl_meeting3.png" 
+                width={800} 
+                height={600}  
+                alt="snl meeting image" 
+              />
             </div>
             
             {/* Duplicate set for infinite loop - Bottom Row */}
@@ -210,7 +247,12 @@ export default function Home() {
             </div>
             
             <div className="card white-card flex justify-center">
-              <div className="text-center">STUDY ROOM IMAGE</div>
+            <Image 
+                src="/images/snl_meeting4.png" 
+                width={800} 
+                height={600}  
+                alt="snl meeting image" 
+              />
             </div>
 
             <div className="card black-card">
