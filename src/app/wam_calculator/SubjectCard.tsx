@@ -1,7 +1,7 @@
 // src/app/wam_calculator/SubjectCard.tsx
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ScoreChart from './ScoreChart'
 
 type Assignment = {

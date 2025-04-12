@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from 'next/link';
 
@@ -38,6 +39,7 @@ const rockSalt = Rock_Salt({
 
 
 export default function Home() {
+    
   return (
     <div className="flex flex-col w-full bg-[#F8F8FF]">
       {/* Page 1 */}
