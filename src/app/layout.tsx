@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Rock_Salt } from "next/font/google"; // Import Rock Salt
 import "./globals.css";
 
-import TopNav from "./ui/TopNav";
-import SideNav from "./ui/SideNav";
+import TopNav from "@components/layout/TopNav";
 
 /* 1. Font Configuration */
 const spaceGrotesk = Space_Grotesk({
