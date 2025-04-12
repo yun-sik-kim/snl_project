@@ -9,22 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light mode
-        BACKGROUND_COLOR_lm: '#fafcff',
-        TEXT_COLOR_MAIN_lm: '#000a14',
-
-        // Dark mode
-        BACKGROUND_COLOR_dm: '#141829',
-        TEXT_COLOR_MAIN_dm: '#F9F2D7',
-        
-        // Component colors
-        BRAND_COLOR1: '#FFDC73',
-        BRAND_COLOR2: '#012B3B',
-        BRAND_COLOR_SUB: '#70BDA4',
-        ACCENT_COLOR: '#F9F871',
-        CUSTOM_WHITE: '#F2F2F2',
-        CUSTOM_GREY: '#444655',
-        CUSTOM_BLACK: '#1C1C1E',
+        DEFUALT_WHITE: '#F8F8FF',
+        DEFUALT_BLACK: '#012E2B', 
+        BRAND_COLOR: '#FFDC73'
       },
       gridTemplateColumns: {
         GRID_LAYOUT: 'repeat(12, 5.45rem)',
