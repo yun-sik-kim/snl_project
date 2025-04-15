@@ -1,14 +1,15 @@
 "use client";
-import { useState } from "react";
+
 import ICSCalendarViewer from "./ICSCalendarViewer";
-import ICSGenerator from "./_ICSCalendarGenerator";
-import ICSCalendarGenerator from "./_ICSCalendarGenerator";
+import LeftNav from "@components/layout/LeftNav";
 
 export default function CalendarPage() {
   return (
-    <div className="w-full h-full flex flex-row justify-center pt-16">
-      <ICSCalendarViewer />
-      {/* <ICSCalendarGenerator /> */}
+    <div className="w-full h-screen flex flex-row justify-center pt-16 bg-[#EFEFEF]">
+      <LeftNav />
+      <div className="relative max-w-7xl">
+        <ICSCalendarViewer />
+      </div>
     </div>
   );
 }

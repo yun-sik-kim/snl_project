@@ -20,7 +20,7 @@ const LoginForm: FC = () => {
     e.preventDefault();
     if (id === MOCK_ID && pw === MOCK_PW) {
       login(); // Update the global state
-      router.push("/wam_calculator"); // Redirect after login
+      router.push("/auth"); // Redirect after login
     } else {
       setError("Please try ID or password again!");
     }

@@ -1,3 +1,11 @@
+export type VEvent= {
+  title: string,
+  start: Date,
+  end: Date,
+  allDay?: boolean
+  resource?: any,
+}
+
 // VCALENDAR
 export type ICSCalendar = { 
   PRODID: string;
@@ -55,3 +63,4 @@ type DayLight = {
   DTSTART: string;
   RRULE: string; // NOTE original is: RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=1SU
 }
+

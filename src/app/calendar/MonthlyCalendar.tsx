@@ -1,202 +1,210 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { Calendar, momentLocalizer, Views } from "react-big-calendar";
+import moment from "moment";
+import { VEvent } from "../types/calendarType";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { ICSEvent } from "./types/ics.types";
+import "./css/react-big-calendar.css";
 
-export default function MonthlyCalendar({
-  currentEvent,
-  onEventClick,
-  eventList = [],
-  // onEventsChange,
-}: {
-  currentEvent: ICSEvent;
-  onEventClick: (event: ICSEvent) => void;
-  eventList: ICSEvent[];
-  // onEventsChange?: (events: ICSEvent[]) => void;
-}) {
-  const MONTH_NAMES = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ];
-  const DAY_NAMES = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  
-  const selectedEventDate = new Date(currentEvent.startTime);
-  const daysInMonth = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth() + 1, 0).getDate();
-  const firstDayOfMonth = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth(), 1).getDay();
+const localizer = momentLocalizer(moment);
 
-  // Enhanced helper function to get events for a specific day
-  const getEventsForDay = (day: number): ICSEvent[] => {
-    // Create a target date object for the day we want to check
-    const targetDate = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth(), day);
-    // Set time to beginning of day to ensure consistent date comparison
-    targetDate.setHours(0, 0, 0, 0);
-    
-    // Count the events that fall on this day using filter and length
-    return eventList.filter(event => {
-        const eventStart = new Date(event.startTime);
-        const eventEnd = event.endTime ? new Date(event.endTime) : eventStart;
-        
-        // Create clean copies of dates for comparison, removing time components
-        const compareStart = new Date(eventStart);
-        compareStart.setHours(0, 0, 0, 0);
-        const compareEnd = new Date(eventEnd);
-        compareEnd.setHours(0, 0, 0, 0);
-        
-        // Check if target date falls within event's date range
-        return targetDate >= compareStart && targetDate <= compareEnd;
-    }); 
+interface MonthlyCalendarProps {
+  events: VEvent[];
+  selectedEvent: VEvent | null;
+  onEventSelect: (event: VEvent | null) => void;
+}
+
+const MonthlyCalendar: React.FC<MonthlyCalendarProps> = ({
+  events,
+  selectedEvent,
+  onEventSelect,
+}) => {
+  // State to control the calendar's current date
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  // Handle event click to update selectedEvent
+  const handleSelectEvent = (event: VEvent) => {
+    onEventSelect(event);
   };
 
-  const handlePrevMonth = () => {
-    const newSelectedDate = new Date(
-      selectedEventDate.getFullYear(),
-      selectedEventDate.getMonth() - 1, // Prev month
-      1 // First day of month
+  // Handle user navigation to keep currentDate in sync
+  const handleNavigate = (newDate: Date) => {
+    setCurrentDate(newDate);
+  };
+
+  // Highlight selected event
+  const eventPropGetter = (event: VEvent) => {
+    if (selectedEvent && event.resource?.id === selectedEvent.resource?.id) {
+      return { style: { backgroundColor: "#3174ad" } };
+    }
+    return {};
+  };
+
+  // Highlight current day and selected event's day
+  const dayPropGetter = (date: Date) => {
+    // Highlight selected event's day
+    if (
+      selectedEvent &&
+      selectedEvent.start &&
+      moment(selectedEvent.start).isValid()
+    ) {
+      const isSelectedDay = moment(date).isSame(
+        moment(selectedEvent.start),
+        "day"
+      );
+      if (isSelectedDay) {
+        return { style: { backgroundColor: "#fff59d" } }; // Yellow for selected event's day
+      }
+    }
+
+    // Highlight current day
+    const isToday = moment(date).isSame(moment(), "day");
+    if (isToday) {
+      return { style: { backgroundColor: "#e0f7fa" } }; // Light cyan for today
+    }
+
+    return {};
+  };
+
+  // Navigate to selected event's month if outside current view
+  useEffect(() => {
+    if (
+      selectedEvent &&
+      selectedEvent.start &&
+      moment(selectedEvent.start).isValid()
+    ) {
+      const eventDate = moment(selectedEvent.start);
+      const currentMonthStart = moment(currentDate).startOf("month");
+      const currentMonthEnd = moment(currentDate).endOf("month");
+
+      if (
+        !eventDate.isBetween(
+          currentMonthStart,
+          currentMonthEnd,
+          undefined,
+          "[]"
+        )
+      ) {
+        setCurrentDate(eventDate.toDate());
+      }
+    }
+  }, [selectedEvent]);
+
+  const CustomToolbar = (toolbarProps: any) => {
+    const { date, onNavigate } = toolbarProps;
+    const monthName = moment(date).format("MMMM");
+    const yearName = moment(date).format("YYYY");
+
+    const goToBack = () => onNavigate("PREV");
+    const goToNext = () => onNavigate("NEXT");
+
+    return (
+      <div className="flex justify-between items-center h-12">
+        <span className="text-2xl">{monthName}</span>
+        <span className="text-2xl text-BRAND_COLOR">{yearName}</span>
+        <span className="flex items-center">
+          <button
+            style={{ border: "none", padding: "0" }}
+            type="button"
+            onClick={goToBack}
+            title="Previous month"
+            aria-label="Previous month"
+          >
+            <ChevronLeft className="text-DEFUALT_BLACK" size={24} />
+          </button>
+          <button
+            style={{ border: "none", padding: "0" }}
+            type="button"
+            onClick={goToNext}
+            title="Next month"
+            aria-label="Next month"
+          >
+            <ChevronRight className="text-DEFUALT_BLACK" size={24} />
+          </button>
+        </span>
+      </div>
     );
-    
-    // Update selected event with new date
-    onEventClick({
-      ...currentEvent,
-      startTime: newSelectedDate.toISOString(),
-    });
   };
 
-  const handleNextMonth = () => {
-    const newSelectedDate = new Date(
-      selectedEventDate.getFullYear(),
-      selectedEventDate.getMonth() + 1,
-      1
+  interface EventWrapperProps {
+    style?: React.CSSProperties;
+    className?: string;
+    children: React.ReactNode;
+    event: VEvent;
+  }
+
+  const CustomEventWrapper = ({
+    style,
+    className,
+    children,
+    event,
+  }: EventWrapperProps) => {
+    return (
+      <div
+        style={{ ...style, backgroundColor: "transparent" }}
+        className={className}
+        title={event.title}
+        aria-label={`Event: ${event.title}`}
+      >
+        {children}
+      </div>
     );
-    
-    onEventClick({
-      ...currentEvent,
-      startTime: newSelectedDate.toISOString(),
-    });
   };
 
-  // const handleDateClick = (day: number) => {
-  //   const selectedDate = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth(), day);
-  //   const dayEvents = getEventsForDay(day);
-  //   console.log(day)
-  //   // If there are events on the selected day, select the first one
-  //   // Otherwise, update the current selected event's date
-  //   if (dayEvents.length > 0) {
-  //     onEventClick(dayEvents[0]);
-  //   } else {
-  //     onEventClick({
-  //       ...currentEvent,
-  //       startTime: selectedDate.toISOString(),
-  //     });
-  //   }
+  const CustomEvent = ({ event }: { event: VEvent }) => {
+    return (
+      <div
+        title={event.title}
+        style={{
+          width: "8px",
+          height: "8px",
+          backgroundColor: "blue",
+          borderRadius: "50%",
+          margin: "2px",
+          cursor: "pointer",
+        }}
+      ></div>
+    );
+  };
 
-  //   console.log(currentEvent);
+  // const CustomDateHeader = ({ event }: { event: VEvent }) => {
+  //   const dayNumber = event.start.getDate();
+  //   const isWeekend = date.getDay() === 0 || date.getDay() === 6;
+  //   return (
+  //     <div
+  //       style={{
+  //         backgroundColor: isWeekend ? '#ffebee' : 'white',
+  //         padding: '5px',
+  //         textAlign: 'right',
+  //       }}
+  //     >
+  //       <span>{dayNumber}</span>
+  //       {isWeekend && <span>🌴</span>}
+  //     </div>
+  //   );
   // };
 
-  const handleDateClick = (day: number) => {
-    const selectedDate = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth(), day);
-    // Set the time to noon to avoid timezone issues
-    selectedDate.setHours(12, 0, 0, 0);
-    console.log(selectedDate);
-    // const dayEvents = getEventsForDay(day);
-    
-    // if (dayEvents.length > 0) {
-    //     onEventClick(dayEvents[0]);
-    // } else {
-        onEventClick({
-            ...currentEvent,
-            startTime: selectedDate.toISOString(),
-        });
-    // }
-    console.log(day)
-    console.log(currentEvent);
+  return (
+    <Calendar
+      className="w-full h-full"
+      localizer={localizer}
+      events={events}
+      startAccessor="start"
+      endAccessor="end"
+      defaultView={Views.MONTH}
+      views={[Views.MONTH]}
+      date={currentDate}
+      onNavigate={handleNavigate}
+      eventPropGetter={eventPropGetter}
+      dayPropGetter={dayPropGetter}
+      onSelectEvent={handleSelectEvent}
+      components={{
+        toolbar: CustomToolbar,
+        // event: CustomEvent,
+        // eventWrapper: CustomEventWrapper,
+      }}
+      // toolbar={false}
+    />
+  );
 };
 
-  const renderDays = () => {
-    const days = [];
-    
-    // Add empty cells for days before the first day of the month
-    for (let i = 0; i < firstDayOfMonth; i++) {
-      days.push(
-        <div key={`empty-${i}`} className="w-12 h-12" />
-      );
-    }
-
-    // Render calendar days
-    for (let day = 1; day <= daysInMonth; day++) {
-      const currentDate = new Date(selectedEventDate.getFullYear(), selectedEventDate.getMonth(), day);
-
-      const isSelected = (() => {
-          // Create Date objects for both dates
-          const eventDate = new Date(currentEvent?.startTime);
-          // Reset both dates to start of day to compare only the date portion
-          eventDate.setHours(0, 0, 0, 0);
-          currentDate.setHours(0, 0, 0, 0);
-          
-          // Compare the timestamps
-          return eventDate.getTime() === currentDate.getTime();
-      })();      
-      const isToday = new Date().toDateString() === currentDate.toDateString();
-      const dayEvents = getEventsForDay(day);
-      const hasEvents = dayEvents.length > 0;
-
-      days.push(
-        <div
-            key={day}
-            onClick={() => handleDateClick(day)}
-            className={`w-12 h-12 border border-gray-100 flex items-center justify-center cursor-pointer relative
-             ${isSelected ? "bg-blue-500 text-white" : ""}
-             ${isToday && !isSelected ? "bg-red-400" : ""}
-             ${hasEvents && !isSelected ? "bg-red-100" : ""}
-             hover:bg-gray-100 transition-colors`}
-            title={hasEvents ? `${dayEvents.length} event(s)` : "No events"}
-        >
-            <span>{day}</span>
-            {hasEvents && (
-                <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                    {dayEvents.length > 1 ? (
-                        <span className="text-xs font-medium text-red-600">
-                            {dayEvents.length}
-                        </span>
-                    ) : (
-                        <div className="w-1 h-1 rounded-full bg-red-500"></div>
-                    )}
-                </div>
-            )}
-        </div>
-    );
-    }
-    return days;
-  };
-
-  return (
-    <div className="w-full h-full bg-white rounded-lg shadow p-4 text-amber-950">
-      <div className="flex items-center justify-between mb-4">
-        <button
-          onClick={handlePrevMonth}
-          className="p-2 hover:bg-gray-100 rounded-full"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </button>
-        <h2 className="text-xl font-semibold">
-          {MONTH_NAMES[selectedEventDate.getMonth()]} {selectedEventDate.getFullYear()}
-        </h2>
-        <button
-          onClick={handleNextMonth}
-          className="p-2 hover:bg-gray-100 rounded-full"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </button>
-      </div>
-
-      <div className="grid grid-cols-7">
-        {DAY_NAMES.map((day) => (
-          <div key={day} className="text-center font-medium text-gray-600">
-            {day}
-          </div>
-        ))}
-        {renderDays()}
-      </div>
-
-      {/* <div className="grid grid-cols-7 gap-1">{renderDays()}</div> */}
-    </div>
-  );
-}
+export default MonthlyCalendar;
