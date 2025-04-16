@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import TestimonialCarousel from "@components/TestimonialCarousel";
-import InfiniteCardSlider from "@components/InfiniteCardSlider";
-import CircleWithRipple from "./components/animation/CircleWithRipple";
+import { InfiniteSlider } from "./components/InfiniteSlider";
+import RotatingSvg from "./components/animation/RotatingSvg";
 import Footer from "@components/layout/Footer";
 
 import { Rock_Salt } from "next/font/google";
@@ -41,7 +41,7 @@ const rockSalt = Rock_Salt({
 
 export default function Home() {
   return (
-    <div className="flex flex-col w-full bg-[#F8F8FF]">
+    <div className="flex flex-col w-full bg-[#F8F8FF] overflow-x-hidden">
       {/* Page 1 */}
 
       {/* Page 1 - Hero Section */}
@@ -50,8 +50,39 @@ export default function Home() {
         <div className="h-16"></div>
 
         {/* Yellow Circle */}
-        <div className="absolute mt-24 rounded-full bg-[#FFDC73] w-[150%] aspect-square"></div>
-
+        {/* <div className="absolute mt-24 rounded-full bg-[#FFDC73] w-[150%] aspect-square"></div> */}
+        <div className="relative w-full h-full">
+          <RotatingSvg
+            className="absolute w-screen"
+            src="/hero/heroCircle00.svg"
+            alt="rotating circle"
+            width={1680}
+            height={1680}
+          />
+          <RotatingSvg
+            className="absolute"
+            src="/hero/heroCircle01.svg"
+            alt="rotating circle"
+            width={1680}
+            height={1680}
+          />
+          <RotatingSvg
+            className="absolute"
+            src="/hero/heroCircle02.svg"
+            alt="rotating circle"
+            width={1680}
+            height={1680}
+            duration={3} // Optional: control rotation speed (seconds per rotation)
+          />
+          <RotatingSvg
+            className="absolute"
+            src="/hero/heroCircle03.svg"
+            alt="rotating circle"
+            width={1680}
+            height={1680}
+            duration={3} // Optional: control rotation speed (seconds per rotation)
+          />
+        </div>
         {/* Text Content */}
         <div className="absolute w-6/12 z-10 text-center flex flex-col gap-4 mt-44">
           <h2 className="text-md lg:text-2xl font-medium">
@@ -113,168 +144,7 @@ export default function Home() {
         </div>
 
         {/* Two-Row Staggered Infinite Card Slider */}
-        <div className="w-full overflow-hidden relative">
-          <style jsx>{`
-            @keyframes slideCardsLeft {
-              0% {
-                transform: translateX(0);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-
-            @keyframes slideCardsRight {
-              0% {
-                transform: translateX(-25%);
-              }
-              100% {
-                transform: translateX(25%);
-              }
-            }
-
-            .cards-track-top {
-              animation: slideCardsLeft 30s linear infinite;
-              width: fit-content;
-              display: flex;
-              gap: 1.5rem;
-            }
-
-            .cards-track-bottom {
-              animation: slideCardsLeft 30s linear infinite;
-              width: fit-content;
-              display: flex;
-              gap: 1.5rem;
-              margin-top: 1.5rem;
-              margin-left: 4rem;
-            }
-
-            /* Pause animation on hover */
-            .cards-container:hover .cards-track-top,
-            .cards-container:hover .cards-track-bottom {
-              animation-play-state: paused;
-            }
-
-            .card {
-              width: 340px;
-              flex-shrink: 0;
-              border-radius: 1.5rem;
-              padding: 1.75rem;
-              display: flex;
-              align-items: center;
-              box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            }
-
-            .black-card {
-              background-color: #000;
-              color: white;
-            }
-
-            .white-card {
-              background-color: white;
-            }
-          `}</style>
-
-          <div className="cards-container py-4">
-            {/* Top Row */}
-            <div className="cards-track-top">
-              {/* First set of cards - Top Row */}
-              <div className="card black-card">
-                <p className="text-lg">
-                  Tired of playing musical chairs at crowded cafés? We got you!
-                </p>
-              </div>
-
-              <div className="card white-card flex justify-center">
-                <Image
-                  src="/images/snl_meeting1.png"
-                  width={800}
-                  height={600}
-                  alt="snl meeting image"
-                />
-              </div>
-
-              <div className="card black-card">
-                <p className="text-lg">
-                  And did we tell you about all the free snacks you get.
-                </p>
-              </div>
-
-              {/* Duplicate set for infinite loop - Top Row */}
-              <div className="card black-card">
-                <p className="text-lg">
-                  Tired of playing musical chairs at crowded cafés? We got you!
-                </p>
-              </div>
-
-              <div className="card white-card flex justify-center">
-                <Image
-                  src="/images/snl_meeting2.png"
-                  width={800}
-                  height={600}
-                  alt="snl meeting image"
-                />
-              </div>
-
-              <div className="card black-card">
-                <p className="text-lg">
-                  And did we tell you about all the free snacks you get.
-                </p>
-              </div>
-            </div>
-
-            {/* Bottom Row - Slightly offset */}
-            <div className="cards-track-bottom">
-              {/* First set of cards - Bottom Row */}
-              <div className="card black-card">
-                <p className="text-lg">
-                  From quiet corners to group hubs, we've found the best uni
-                  study spaces—so you can actually study (or at least look like
-                  you are).
-                </p>
-              </div>
-
-              <div className="card white-card flex justify-center">
-                <Image
-                  src="/images/snl_meeting3.png"
-                  width={800}
-                  height={600}
-                  alt="snl meeting image"
-                />
-              </div>
-
-              {/* Duplicate set for infinite loop - Bottom Row */}
-              <div className="card black-card">
-                <p className="text-lg">
-                  From quiet corners to group hubs, we've found the best uni
-                  study spaces—so you can actually study (or at least look like
-                  you are).
-                </p>
-              </div>
-
-              <div className="card white-card flex justify-center">
-                <Image
-                  src="/images/snl_meeting4.png"
-                  width={800}
-                  height={600}
-                  alt="snl meeting image"
-                />
-              </div>
-
-              <div className="card black-card">
-                <p className="text-lg">
-                  From quiet corners to group hubs, we've found the best uni
-                  study spaces—so you can actually study (or at least look like
-                  you are).
-                </p>
-              </div>
-
-              <div className="card white-card flex justify-center">
-                <div className="text-center">STUDY ROOM IMAGE</div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <InfiniteSlider />
       </div>
 
       {/* Page 3 - Fixed Layout */}
