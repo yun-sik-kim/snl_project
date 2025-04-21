@@ -19,68 +19,38 @@ const rockSalt = Rock_Salt({
 
 export default function Home() {
 	return (
-		<div className="flex flex-col w-full bg-[#F8F8FF] overflow-x-hidden">
+		<div className="flex w-full flex-col overflow-x-hidden bg-[#F8F8FF]">
 			{/* Page 1 */}
 
 			{/* Page 1 - Hero Section */}
-			<div className="relative w-full h-screen flex justify-center">
+			<div className="relative flex h-screen w-full justify-center">
 				{/* TopNav Spacing */}
 				<div className="h-16" />
 
 				{/* Yellow Circle */}
-				{/* <div className="absolute mt-24 rounded-full bg-[#FFDC73] w-[150%] aspect-square"></div> */}
-				<div className="relative w-full h-full">
-					<RotatingSvg
-						className="absolute w-screen"
-						src="/hero/heroCircle00.svg"
-						alt="rotating circle"
-						width={1680}
-						height={1680}
-					/>
-					<RotatingSvg
-						className="absolute"
-						src="/hero/heroCircle01.svg"
-						alt="rotating circle"
-						width={1680}
-						height={1680}
-					/>
-					<RotatingSvg
-						className="absolute"
-						src="/hero/heroCircle02.svg"
-						alt="rotating circle"
-						width={1680}
-						height={1680}
-						duration={3} // Optional: control rotation speed (seconds per rotation)
-					/>
-					<RotatingSvg
-						className="absolute"
-						src="/hero/heroCircle03.svg"
-						alt="rotating circle"
-						width={1680}
-						height={1680}
-						duration={3} // Optional: control rotation speed (seconds per rotation)
-					/>
+				<div className=" absolute mt-24 aspect-square w-[150%] rounded-full bg-[#FFDC73]">
+					d
 				</div>
 				{/* Text Content */}
-				<div className="absolute w-6/12 z-10 text-center flex flex-col gap-4 mt-44">
-					<h2 className="text-md lg:text-2xl font-medium">
+				<div className="absolute z-10 mt-44 flex w-6/12 flex-col gap-4 text-center">
+					<h2 className="font-medium text-md lg:text-2xl">
 						Study group made for students by students
 					</h2>
-					<h1 className="text-[40px] lg:text-[80px] xl:text-[100px] font-bold lg:leading-[120%] leading-tight">
+					<h1 className="font-bold text-[40px] leading-tight lg:text-[80px] lg:leading-[120%] xl:text-[100px]">
 						Become a part of the biggest study group in Melb
 					</h1>
 				</div>
 
 				{/* Description */}
-				<div className="absolute bottom-8 left-8 w-3/12 text-left z-[1]">
-					<h3 className="text-sm md:text-md font-medium">
+				<div className="absolute bottom-8 left-8 z-[1] w-3/12 text-left">
+					<h3 className="font-medium text-sm md:text-md">
 						A dedicated time & space every Saturday for students to invest in
 						their dreams despite their busy schedules.
 					</h3>
 				</div>
 
 				{/* Learn More Icon */}
-				<div className="absolute w-12 md:w-52 aspect-square bottom-8 right-8 mb-4 mr-0 md:mr-4 flex flex-col items-center justify-center text-center">
+				<div className="absolute right-8 bottom-8 mr-0 mb-4 flex aspect-square w-12 flex-col items-center justify-center text-center md:mr-4 md:w-52">
 					<h3 className="font-medium">Learn More</h3>
 					<div className="mt-6">
 						<Image src="/arrow.svg" alt="Arrow Icon" width={16} height={16} />
@@ -95,17 +65,17 @@ export default function Home() {
 			</div>
 
 			{/* Page 2 - With Two-Row Staggered Infinite Card Slider */}
-			<div className="relative w-full min-h-screen flex flex-col items-start justify-center px-6 md:px-12 lg:px-24 z-20 bg-[#F8F8FF] py-16">
+			<div className="relative z-20 flex min-h-screen w-full flex-col items-start justify-center bg-[#F8F8FF] px-6 py-16 md:px-12 lg:px-24">
 				{/* Title & Description - Better Balanced Two-Column */}
-				<div className="w-full max-w-6xl mx-auto mb-16">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+				<div className="mx-auto mb-16 w-full max-w-6xl">
+					<div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2">
 						{/* Left Side - Title */}
 						<div>
-							<h2 className="text-5xl md:text-7xl font-bold text-black mb-3">
+							<h2 className="mb-3 font-bold text-5xl text-black md:text-7xl">
 								Why Study with us?
 							</h2>
 							<span
-								className={`${rockSalt.className} text-[#FED800] font-bold text-lg md:text-2xl block`}
+								className={`${rockSalt.className} block font-bold text-[#FED800] text-lg md:text-2xl`}
 							>
 								— COME ON IT'S US
 							</span>
@@ -113,7 +83,7 @@ export default function Home() {
 
 						{/* Right Side - Description */}
 						<div>
-							<p className="text-lg md:text-xl font-medium text-black mb-8 mt-4">
+							<p className="mt-4 mb-8 font-medium text-black text-lg md:text-xl">
 								Make your Saturday count! Every week, meet new goals and new
 								people. SNL is where learning and community grow together.
 							</p>
@@ -126,21 +96,21 @@ export default function Home() {
 			</div>
 
 			{/* Page 3 - Fixed Layout */}
-			<section className="relative w-full bg-black overflow-hidden py-24 px-6 md:px-12 lg:px-24">
+			<section className="relative w-full overflow-hidden bg-black px-6 py-24 md:px-12 lg:px-24">
 				{/* Title and Subheading */}
-				<div className="max-w-6xl mx-auto text-white">
-					<div className="grid grid-cols-1 md:grid-cols-10 gap-6 items-start">
+				<div className="mx-auto max-w-6xl text-white">
+					<div className="grid grid-cols-1 items-start gap-6 md:grid-cols-10">
 						{/* Title */}
 						<div className="md:col-span-6">
-							<h2 className="text-4xl md:text-5xl font-semibold leading-tight">
+							<h2 className="font-semibold text-4xl leading-tight md:text-5xl">
 								Networking for your <br />
 								successful future career
 							</h2>
 						</div>
 
 						{/* Subheading */}
-						<div className="md:col-span-4 mt-2">
-							<p className="text-base md:text-xl font-medium text-white text-opacity-60">
+						<div className="mt-2 md:col-span-4">
+							<p className="font-medium text-base text-white text-opacity-60 md:text-xl">
 								Because LinkedIn Stalking Only Gets You So Far! <br />
 								Plus, think of it as good karma.
 							</p>
@@ -149,9 +119,9 @@ export default function Home() {
 				</div>
 
 				{/* Phone & Chat Section */}
-				<div className="relative max-w-6xl mx-auto flex flex-col items-center justify-center mt-20">
+				<div className="relative mx-auto mt-20 flex max-w-6xl flex-col items-center justify-center">
 					{/* Phone + Bubbles Wrapper */}
-					<div className="relative w-full max-w-[1200px] mx-auto">
+					<div className="relative mx-auto w-full max-w-[1200px]">
 						{/* Phone Image */}
 						<div className="relative">
 							<Image
@@ -159,17 +129,17 @@ export default function Home() {
 								alt="Phone Mockup"
 								width={1200}
 								height={1600}
-								className="w-full h-auto"
+								className="h-auto w-full"
 								priority
 							/>
 
 							{/* Chat Bubbles - Unified Approach with Responsive Positioning */}
 							{/* Gray Bubble */}
-							<div className="absolute bottom-[40%] md:bottom-[40%] right-[5%] md:right-[10%] bg-[#E6E5EB] text-black text-sm md:text-xl font-medium p-3 md:p-6 rounded-[20px] md:rounded-[24px] max-w-[60%] shadow-md leading-relaxed">
+							<div className="absolute right-[5%] bottom-[40%] max-w-[60%] rounded-[20px] bg-[#E6E5EB] p-3 font-medium text-black text-sm leading-relaxed shadow-md md:right-[10%] md:bottom-[40%] md:rounded-[24px] md:p-6 md:text-xl">
 								Expand your university and career network by connecting with
 								accomplished study members!
 								<svg
-									className="absolute bottom-[-10px] right-[12px] w-3 md:w-4 h-3 md:h-4"
+									className="absolute right-[12px] bottom-[-10px] h-3 w-3 md:h-4 md:w-4"
 									viewBox="0 0 20 20"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -180,11 +150,11 @@ export default function Home() {
 							</div>
 
 							{/* Yellow Bubble */}
-							<div className="absolute bottom-[10%] md:bottom-[14%] left-[5%] md:left-[10%] bg-[#FFDC73] text-black text-sm md:text-xl font-medium p-3 md:p-6 rounded-[20px] md:rounded-[24px] max-w-[60%] shadow-md leading-relaxed">
+							<div className="absolute bottom-[10%] left-[5%] max-w-[60%] rounded-[20px] bg-[#FFDC73] p-3 font-medium text-black text-sm leading-relaxed shadow-md md:bottom-[14%] md:left-[10%] md:rounded-[24px] md:p-6 md:text-xl">
 								We invite you to sponsor and support your juniors on their
 								journey to success.
 								<svg
-									className="absolute bottom-[-10px] left-[12px] w-3 md:w-4 h-3 md:h-4"
+									className="absolute bottom-[-10px] left-[12px] h-3 w-3 md:h-4 md:w-4"
 									viewBox="0 0 20 20"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -199,12 +169,12 @@ export default function Home() {
 			</section>
 
 			{/* Page 4 - Study Plan Management */}
-			<section className="relative w-full bg-black text-white py-24 px-6 md:px-12 lg:px-24">
-				<div className="max-w-6xl mx-auto">
-					<div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+			<section className="relative w-full bg-black px-6 py-24 text-white md:px-12 lg:px-24">
+				<div className="mx-auto max-w-6xl">
+					<div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
 						{/* Left Side - Text Content */}
 						<div className="flex flex-col space-y-6">
-							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+							<h2 className="font-bold text-4xl leading-tight md:text-5xl lg:text-6xl">
 								Manage Your Study Plan with Ease
 							</h2>
 
@@ -221,14 +191,14 @@ export default function Home() {
 						</div>
 
 						{/* Right Side - iPhone Mockup */}
-						<div className="relative flex justify-center md:justify-end mt-8 md:mt-0">
+						<div className="relative mt-8 flex justify-center md:mt-0 md:justify-end">
 							<div className="relative w-full max-w-[320px] md:max-w-[400px]">
 								<Image
 									src="/decoration/phone.png"
 									alt="iPhone Mockup"
 									width={400}
 									height={800}
-									className="w-full h-auto"
+									className="h-auto w-full"
 									priority
 								/>
 							</div>
@@ -238,21 +208,21 @@ export default function Home() {
 			</section>
 
 			{/* Page 5 - Community Sharing */}
-			<section className="relative w-full bg-[#F8F8FF] py-24 px-6 md:px-12 lg:px-24">
+			<section className="relative w-full bg-[#F8F8FF] px-6 py-24 md:px-12 lg:px-24">
 				{/* Header Container with MELB Background */}
-				<div className="relative max-w-6xl mx-auto mb-16">
+				<div className="relative mx-auto mb-16 max-w-6xl">
 					{/* MELB Background Text */}
 					<div className="absolute inset-0 flex items-center justify-center">
 						<h1
-							className={`${rockSalt.className} text-[80px] md:text-[100px] lg:text-[150px] font-bold text-[#FFD800] opacity-60`}
+							className={`${rockSalt.className} font-bold text-[#FFD800] text-[80px] opacity-60 md:text-[100px] lg:text-[150px]`}
 						>
 							MELB
 						</h1>
 					</div>
 
 					{/* Heading Text */}
-					<div className="relative z-10 text-center py-8">
-						<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-5xl mx-auto">
+					<div className="relative z-10 py-8 text-center">
+						<h2 className="mx-auto max-w-5xl font-bold text-4xl leading-tight md:text-5xl lg:text-6xl">
 							Share your Uni & Career Story with One-Uni Community in
 						</h2>
 					</div>
@@ -265,21 +235,21 @@ export default function Home() {
 						alt="University Community Board"
 						width={1200}
 						height={800}
-						className="w-full h-auto rounded-lg shadow-xl"
+						className="h-auto w-full rounded-lg shadow-xl"
 						priority
 					/>
 				</div>
 			</section>
 
 			{/* Page 6 - Testimonials */}
-			<section className="relative w-full bg-[#F8F8FF] py-24 px-6 md:px-12 lg:px-24">
-				<div className="max-w-6xl mx-auto">
+			<section className="relative w-full bg-[#F8F8FF] px-6 py-24 md:px-12 lg:px-24">
+				<div className="mx-auto max-w-6xl">
 					{/* Section Heading */}
 					<div className="mb-12">
-						<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+						<h2 className="font-bold text-4xl leading-tight md:text-5xl lg:text-6xl">
 							Connect & Develop
 						</h2>
-						<h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mt-2">
+						<h3 className="mt-2 font-bold text-3xl md:text-4xl lg:text-5xl">
 							For your dream to come true
 						</h3>
 					</div>
