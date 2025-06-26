@@ -9,7 +9,7 @@ import { type FC, type FormEvent, useState } from "react";
 const MOCK_ID = "user01";
 const MOCK_PW = "16apr";
 
-const LoginForm: FC = () => {
+export default function LoginForm() {
 	const [id, setId] = useState("");
 	const [pw, setPw] = useState("");
 	const [error, setError] = useState<string | null>(null);
@@ -46,6 +46,4 @@ const LoginForm: FC = () => {
 			<Button type="submit">Login</Button>
 		</form>
 	);
-};
-
-export default LoginForm;
+}

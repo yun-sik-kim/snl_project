@@ -1,5 +1,5 @@
-/* 0. Imports */
 import type { Metadata } from "next";
+
 import { Rock_Salt, Space_Grotesk } from "next/font/google"; // Import Rock Salt
 import "./globals.css";
 
@@ -34,14 +34,16 @@ export default function RootLayout({
 		<html lang="en">
 			{/* Body Class */}
 			<body
-				className={`${spaceGrotesk.className} w-dvw h-dvh overflow-x-hidden`}
+				// The element will be at least as tall as the dynamic viewport but can grow taller if the content requires it,
+				// allowing natural scrolling without overflow issues.
+				className={`${spaceGrotesk.className} min-h-dvh w-screen overflow-x-hidden`}
 			>
 				<header>
 					<TopNav />
-					{/* <SideNav /> */}
 				</header>
+
 				{/* Main Content */}
-				<main className="w-full h-full">{children}</main>
+				<main className="h-full w-full">{children}</main>
 			</body>
 		</html>
 	);

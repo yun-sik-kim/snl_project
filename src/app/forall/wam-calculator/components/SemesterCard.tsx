@@ -1,9 +1,8 @@
-// src/app > wam_calculator > SemesterCard.tsx
 "use client";
-
 import { Pencil, Plus, Save, Trash2 } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import SubjectCard from "./SubjectCard";
+import clsx from "clsx";
 
 type SubjectData = {
 	id: number;
@@ -62,19 +61,23 @@ export default function SemesterCard({
 	};
 
 	return (
-		<div className="bg-white border border-gray-200 rounded-2xl p-4 mb-10 shadow-md">
+		<div
+			className={clsx(
+				"mb-10 h-full w-full rounded-2xl border bg-white p-4 shadow-sm",
+			)}
+		>
 			{/* Header */}
-			<div className="flex justify-between items-center mb-4 px-2">
+			<div className="mb-4 flex items-center justify-between px-2">
 				<div className="flex items-center gap-2">
 					{isEditingTitle ? (
 						<input
 							type="text"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
-							className="text-xl font-semibold px-2 py-1 border border-gray-400 rounded"
+							className="rounded border border-gray-400 px-2 py-1 font-semibold text-xl"
 						/>
 					) : (
-						<h2 className="text-xl font-semibold uppercase">{title}</h2>
+						<h2 className="font-semibold text-xl uppercase">{title}</h2>
 					)}
 					<button onClick={handleRenameToggle}>
 						{isEditingTitle ? <Save size={18} /> : <Pencil size={18} />}
@@ -83,21 +86,21 @@ export default function SemesterCard({
 
 				<button
 					onClick={handleAddSubject}
-					className="flex items-center gap-1 text-sm px-3 py-1 rounded bg-gray-200 hover:bg-gray-300 border border-gray-400"
+					className="flex items-center gap-1 rounded border border-gray-400 bg-gray-200 px-3 py-1 text-sm hover:bg-gray-300"
 				>
-					<Plus className="w-4 h-4" />
+					<Plus className="h-4 w-4" />
 					Add Subject
 				</button>
 			</div>
 
 			{/* Subjects Grid */}
-			<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+			<div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 				{subjects.map((subject) => (
 					<div key={subject.id} className="relative">
 						<SubjectCard />
 						<button
 							onClick={() => handleRemoveSubject(subject.id)}
-							className="absolute top-1 right-1 bg-red-100 hover:bg-red-200 text-red-600 rounded-full p-1 shadow"
+							className="absolute top-1 right-1 rounded-full bg-red-100 p-1 text-red-600 shadow hover:bg-red-200"
 							title="Remove Subject"
 						>
 							<Trash2 size={16} />

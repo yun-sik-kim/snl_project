@@ -5,8 +5,7 @@ import ICSCalendarViewer from "./ICSCalendarViewer";
 
 export default function CalendarPage() {
 	return (
-		<div className="w-full h-screen flex flex-row justify-center pt-16 bg-[#EFEFEF]">
-			<LeftNav />
+		<div className="flex h-screen w-full flex-row justify-center bg-[#EFEFEF] pt-16">
 			<div className="relative max-w-7xl">
 				<ICSCalendarViewer />
 			</div>

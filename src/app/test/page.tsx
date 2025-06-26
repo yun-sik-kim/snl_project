@@ -1,48 +1,11 @@
 "use client";
-import moment from "moment";
-import React from "react";
-import { Calendar, momentLocalizer } from "react-big-calendar";
-import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-import "react-big-calendar/lib/css/react-big-calendar.css";
 
-const localizer = momentLocalizer(moment);
-const DnDCalendar = withDragAndDrop(Calendar);
+import SubjectCard from "../forall/wam-calculator/components/SubjectCard";
 
-const myEventsList = [
-	{
-		start: new Date(2023, 3, 13, 10, 0),
-		end: new Date(2023, 3, 13, 12, 0),
-		title: "Meeting",
-	},
-	{
-		start: new Date(2023, 3, 14, 14, 0),
-		end: new Date(2023, 3, 14, 15, 0),
-		title: "Lunch",
-	},
-];
-
-function MyCalendar() {
+export default function TestPage() {
 	return (
 		<div>
-			<div className="h-16"></div>
-			<Calendar
-				localizer={localizer}
-				// events={myEventsList}
-				startAccessor="start"
-				endAccessor="end"
-				style={{ height: 500 }}
-				defaultView="month"
-			/>
-			<Calendar
-				localizer={localizer}
-				// events={myEventsList}
-				startAccessor="start"
-				endAccessor="end"
-				style={{ height: 500 }}
-				defaultView="week"
-			/>
+			<SubjectCard />
 		</div>
 	);
 }
-
-export default MyCalendar;

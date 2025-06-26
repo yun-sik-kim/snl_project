@@ -4,22 +4,22 @@ import Link from "next/link";
 
 export default function LeftNav() {
 	return (
-		<div className="fixed top-1/2 left-4 transform -translate-y-1/2 w-[56px] bg-gray-100 shadow-md rounded-xl flex flex-col items-center py-4 space-y-6 z-50">
+		<div className="-translate-y-1/2 fixed top-1/2 left-4 z-50 flex w-[56px] transform flex-col items-center space-y-6 rounded-xl bg-gray-100 py-4 shadow-md">
 			<Link
 				href=""
-				className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-300 transition"
+				className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-gray-300"
 			>
 				<Home size={24} />
 			</Link>
 			<Link
 				href="/wam_calculator"
-				className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-300 transition"
+				className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-gray-300"
 			>
 				<Calculator size={24} />
 			</Link>
 			<Link
 				href="/calendar"
-				className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-300 transition"
+				className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-gray-300"
 			>
 				<CalendarDays size={24} />
 			</Link>
@@ -31,7 +31,8 @@ export default function LeftNav() {
 function NavIcon({ icon, label }: { icon: React.ReactNode; label: string }) {
 	return (
 		<button
-			className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-gray-300 transition"
+			type="button"
+			className="flex h-10 w-10 items-center justify-center rounded-lg transition hover:bg-gray-300"
 			title={label}
 		>
 			{icon}

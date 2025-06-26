@@ -13,17 +13,6 @@ export default {
         DEFUALT_BLACK: '#012E2B', 
         BRAND_COLOR: '#FFDC73'
       },
-      animation: {
-        ["infinite-slider"]: "infiniteSlider 30s linear infinite",
-      },
-      keyframes: {
-        infiniteSlider: {
-          "0%": { transform: "translateX(0)" },
-          "100%": {
-            transform: "translateX(calc(-320px * 5))",
-          },
-        },
-      },
       gridTemplateColumns: {
         GRID_LAYOUT: 'repeat(12, 5.45rem)',
         GRID_LAYOUT_mb: 'repeat(6, 5.45rem)',

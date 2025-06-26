@@ -10,7 +10,7 @@ export default function Verifying() {
 	useEffect(() => {
 		// Set a timer to redirect after 2 seconds
 		const timer = setTimeout(() => {
-			router.push("/wam_calculator");
+			router.push("/user");
 		}, 5000);
 
 		// Cleanup timer on component unmount
@@ -18,15 +18,15 @@ export default function Verifying() {
 	}, [router]);
 
 	return (
-		<div className="flex items-center justify-center min-h-screen bg-gray-100">
+		<div className="flex min-h-screen items-center justify-center bg-gray-100">
 			<div className="text-center">
 				<DotLottieReact
 					src="loading-animation.lottie"
-					className="mx-auto mb-4 w-[250px] h-[250px]"
+					className="mx-auto mb-4 h-[250px] w-[250px]"
 					loop
 					autoplay
 				/>
-				<p className="text-lg font-semibold text-gray-700">Verifying...</p>
+				<p className="font-semibold text-gray-700 text-lg">Verifying...</p>
 			</div>
 		</div>
 	);

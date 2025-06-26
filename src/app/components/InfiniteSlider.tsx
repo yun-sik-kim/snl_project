@@ -1,107 +1,143 @@
-const CARDS1 = [
-	<img className="" src="/images/snl_meeting1.png" alt="" />,
-	<p className="w-[320px] h-[230px] flex items-center px-9 py-6 text-2xl text-center text-wrap bg-DEFUALT_BLACK text-DEFUALT_WHITE rounded-3xl">
-		Tired of playing musical chairs at crowded cafés? We got you!
-	</p>,
-	<img src="/images/snl_meeting2.png" alt="" />,
-	<p className="w-[320px] h-[230px] flex items-center px-9 py-6 text-2xl text-center text-wrap bg-slate-200 text-DEFUALT_BLACK rounded-3xl">
-		And did we tell you about all the free snacks you get.
-	</p>,
-	<img src="/images/snl_meeting3.png" alt="" />,
-	<p className="w-[320px] h-[230px] flex items-center px-9 py-6 text-2xl text-center text-wrap bg-DEFUALT_BLACK text-DEFUALT_WHITE rounded-3xl">
-		From quiet corners to group hubs, we've found the best uni study spaces
-	</p>,
-	<img src="/images/snl_meeting4.png" alt="" />,
-	<p className="w-[320px] h-[230px] flex items-center px-9 py-6 text-2xl text-center text-wrap bg-slate-200 text-DEFUALT_BLACK rounded-3xl">
-		—so you can actually study (or at least look like you are).
-	</p>,
-];
+import type React from "react";
 
-export const InfiniteSlider = () => {
+interface SliderItem {
+	id: number;
+	src: string;
+	alt?: string;
+}
+
+interface InfiniteSliderProps {
+	items: SliderItem[];
+	width?: number;
+	height?: number;
+	duration?: number;
+	reverse?: boolean;
+	gap?: number;
+	useMask?: boolean;
+	className?: string;
+}
+
+export default function InfiniteSlider({
+	items,
+	width = 100,
+	height = 50,
+	duration = 10,
+	reverse = false,
+	gap = 0,
+	useMask = true,
+	className = "",
+}: InfiniteSliderProps) {
+	const quantity = items.length;
+
+	// Inline styles for the slider container
+	const sliderStyle: React.CSSProperties = {
+		"--width": `${width}px`,
+		"--height": `${height}px`,
+		"--quantity": quantity,
+		"--duration": `${duration}s`,
+		"--gap": `${gap}px`,
+	} as React.CSSProperties;
+
 	return (
-		<div className="w-full">
+		<div className={`relative w-full overflow-hidden ${className}`}>
+			<style jsx>{`
+				.slider {
+					width: 100%;
+					height: var(--height);
+					overflow: hidden;
+				}
+
+				.slider.with-mask {
+					mask-image: linear-gradient(
+						to right,
+						transparent,
+						#000 10% 90%,
+						transparent
+					);
+					-webkit-mask-image: linear-gradient(
+						to right,
+						transparent,
+						#000 10% 90%,
+						transparent
+					);
+				}
+				
+				.slider-list {
+					display: flex;
+					width: 100%;
+					min-width: calc((var(--width) + var(--gap)) * var(--quantity));
+					position: relative;
+				}
+				
+				.slider-item {
+					width: var(--width);
+					height: var(--height);
+					position: absolute;
+					left: 100%;
+					animation: autoRun var(--duration) linear infinite;
+					transition: filter 0.5s;
+					animation-delay: calc((var(--duration) / var(--quantity)) * (var(--position) - 1) - var(--duration)) !important;
+				}
+				
+				.slider-item img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+				
+				@keyframes autoRun {
+					from {
+						left: 100%;
+					}
+					to {
+            			left: calc((var(--width) + var(--gap)) * -1);
+					}
+				}
+				
+				@keyframes reversePlay {
+					from {
+					    left: calc((var(--width) + var(--gap)) * -1);
+					}
+					to {
+						left: 100%;
+					}
+				}
+				
+				.slider:hover .slider-item {
+					animation-play-state: paused !important;
+					filter: grayscale(1);
+				}
+				
+				.slider .slider-item:hover {
+					filter: grayscale(0);
+				}
+				
+				.slider[data-reverse="true"] .slider-item {
+					animation-name: reversePlay;
+				}
+			`}</style>
+
 			<div
-				// w-[calc(card_width * 4)]
-				className="relative m-auto w-[calc(320px*4)] overflow-hidden 
-    before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:content-[''] 
-    after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:content-['']"
+				className={`slider ${useMask ? "with-mask" : ""}`}
+				style={sliderStyle}
+				data-reverse={reverse}
 			>
-				<div
-					// w-[calc(card_width * 2 * number_of_cards)]
-					className="animate-infinite-slider flex w-[calc(320px*2*10)]"
-				>
-					{CARDS1.map((item, index) => (
+				<div className="slider-list">
+					{items.map((item, index) => (
 						<div
-							// w-[card_width]
-							className="slide content-center flex w-[320px] items-center justify-center ml-3"
-							key={index}
+							key={item.id}
+							className="slider-item"
+							style={
+								{
+									"--position": index + 1,
+								} as React.CSSProperties
+							}
 						>
-							{item}
-						</div>
-					))}
-					{CARDS1.map((item, index) => (
-						<div
-							// w-[card_width]
-							className="slide flex w-[320px] items-center justify-center"
-							key={index}
-						>
-							{item}
+							<img className="rounded-xl" src={item.src} alt={item.alt || ""} />
 						</div>
 					))}
 				</div>
 			</div>
 		</div>
 	);
-};
-
-// ORIGINAL CODE
-// import {
-//   FigmaLogoIcon,
-//   FramerLogoIcon,
-//   SketchLogoIcon,
-//   TwitterLogoIcon,
-//   GitHubLogoIcon,
-//   VercelLogoIcon,
-//   NotionLogoIcon,
-//   DiscordLogoIcon,
-//   InstagramLogoIcon,
-//   LinkedInLogoIcon,
-// } from "@radix-ui/react-icons";
-
-// const LOGOS = [
-//   <FigmaLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <FramerLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <SketchLogoIcon width={24} height={24} className=" text-slate-800" />,
-//   <TwitterLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <GitHubLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <VercelLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <NotionLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <DiscordLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <InstagramLogoIcon width={24} height={24} className="text-slate-800" />,
-//   <LinkedInLogoIcon width={24} height={24} className="text-slate-800" />,
-// ];
-
-// export const InfiniteSlider = () => {
-//   return (
-//     <div className="relative m-auto w-[500px] overflow-hidden bg-white before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-[100px] before:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-[100px] after:-scale-x-100 after:bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0)_100%)] after:content-['']">
-//       <div className="animate-infinite-slider flex w-[calc(250px*10)]">
-//         {LOGOS.map((logo, index) => (
-//           <div
-//             className="slide flex w-[125px] items-center justify-center"
-//             key={index}
-//           >
-//             {logo}
-//           </div>
-//         ))}
-//         {LOGOS.map((logo, index) => (
-//           <div
-//             className="slide flex w-[125px] items-center justify-center"
-//             key={index}
-//           >
-//             {logo}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
+}
